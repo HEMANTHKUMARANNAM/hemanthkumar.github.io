@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quadratic Equation Solver</title>
+<!-- Add Bootstrap CSS link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+  .container {
+    max-width: 400px;
+    margin: 100px auto;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  #result {
+    text-align: center;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quadratic Equation Solver</h1>
+    <form id="quadratic-form">
+      <div class="form-group">
+        <label for="a">Coefficient a:</label>
+        <input type="number" class="form-control" id="a" required>
+      </div>
+      <div class="form-group">
+        <label for="b">Coefficient b:</label>
+        <input type="number" class="form-control" id="b" required>
+      </div>
+      <div class="form-group">
+        <label for="c">Coefficient c:</label>
+        <input type="number" class="form-control" id="c" required>
+      </div>
+      <button type="button" class="btn btn-primary btn-block" onclick="solveQuadratic()">Solve</button>
+    </form>
+    <p id="result"></p>
+  </div>
+  
+  <!-- Add Bootstrap JS and Popper.js (required for some Bootstrap features) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function solveQuadratic() {
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const c = parseFloat(document.getElementById('c').value);
+
+      const discriminant = b ** 2 - 4 * a * c;
+
+      if (discriminant > 0) {
+        const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        document.getElementById('result').innerText = `The solutions are x1 = ${x1.toFixed(2)} and x2 = ${x2.toFixed(2)}`;
+      } else if (discriminant === 0) {
+        const x = -b / (2 * a);
+        document.getElementById('result').innerText = `The solution is x = ${x.toFixed(2)}`;
+      } else {
+        document.getElementById('result').innerText = 'No real solutions';
+      }
+    }
+  </script>
+</body>
+</html>
